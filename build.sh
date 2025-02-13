@@ -5,6 +5,8 @@ set -o errexit
 # Modify this line as needed for your package manager (pip, poetry, etc.)
 pip install -r requisitos.txt
 
+python manage.py makemigrations
+
 # Apply any outstanding database migrations
 python manage.py migrate
 

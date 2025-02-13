@@ -192,11 +192,10 @@ SIMPLE_JWT = {
     'UPDATE_LAST_LOGIN': False,
 }
 
-CORS_ALLOWED_ORIGINS = [
-    "https://sub.example.com",
-    # "http://localhost:5500",
-    "http://127.0.0.1:5500",
-]
+CORS_ALLOW_ALL_ORIGINS = True  # Allow all origins (since mobile apps don't have a fixed domain)
+CORS_ALLOW_CREDENTIALS = True  # Allow sending credentials like tokens
+CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
+CORS_ALLOW_HEADERS = ["authorization", "content-type"]
 
 #Configuracion envio emails
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
