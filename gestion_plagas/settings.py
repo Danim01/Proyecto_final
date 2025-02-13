@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+# Import dj-database-url at the beginning of the file.
+import dj_database_url
 from pathlib import Path
 from datetime import timedelta
 from django.utils.translation import gettext_lazy as _
@@ -106,17 +107,10 @@ WSGI_APPLICATION = 'gestion_plagas.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': env('DB_ENGINE'),
-        'NAME': env('DB_NAME'),
-        # TODO cambiar usuario en produccion
-        'USER': env('DB_USER'),
-        # TODO cambiar contraseña y variables de entorno
-        # TODO Gestor de contraseñas bitwarden
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
-        'PORT': env('DB_PORT', default='5432'),
-    }
+    'default': dj_database_url.config(
+      default=env('DB_CONNECTION_URL'),
+      conn_max_age=600
+    )
 }
 
 
